@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import axios from 'axios'
 
 class CadastroEventos extends Component {
 
@@ -25,12 +25,11 @@ class CadastroEventos extends Component {
 
     onSubmit = (e) => {
         e.preventDefault()
-        fetch('http://localhost:4000/clientes',{
-            headers: {
-                'Accept': 'application/json'
-            },
-            method: 'POST',
-            body: this.state
+        axios.post('http://localhost:4000/clientes', {
+            nome: this.state.nomeCompleto,
+            telefone: this.state.telefone,
+            celular: this.state.celular,
+            igreja: this.state.igreja
         })
         .then(res => this.verifystatus(res.status, res))
         .catch(res => console.log(res))
